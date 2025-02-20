@@ -1,2 +1,2 @@
-# Guess-What-
-Guess What? Pass and Play g
+# Guess What?
+A two player customizable pass and play guessing game
