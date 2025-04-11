@@ -1,0 +1,4 @@
+[project]
+name = "guesswhat"
+version = "0.0.1"
+description = "Guess What pass and play game."
