@@ -1,4 +1,4 @@
-"""This class represents a character storing name, file location and flip status"""
+"""This class represents a character storing name, file location and flip status."""
 
 class Character:
     """
@@ -7,6 +7,7 @@ class Character:
     Attributes:
         name (str): The name of the character.
         flipped (bool): The current flip status of character, initialized to False.
+        image_path (str): The file path of the image.
     """
     def __init__(self, name, image_path):
         """
@@ -17,19 +18,13 @@ class Character:
         """
         self.flipped = False
         self.name = name
-        self._image_path = image_path
+        self.image_path = image_path
 
     def flip(self):
         """
-        marks the character as flipped
+        Reverses the flip status.
         """
-        self.flipped = True
-
-    def get_image_path(self):
-        """
-        Returns the image file path
-        """
-        return self._image_path
+        self.flipped = not self.flipped
 
     def __str__(self):
         """
