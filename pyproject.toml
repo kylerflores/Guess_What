@@ -2,3 +2,6 @@
 name = "guesswhat"
 version = "0.0.1"
 description = "Guess What pass and play game."
+
+[project.scripts]
+guess_what = "src.ui_package.guess_what_game:main"
