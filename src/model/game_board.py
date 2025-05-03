@@ -72,6 +72,17 @@ class GameBoard:
         """
         prints the current state of the game board in the console 
         """
-        for i in self.character_dict:
-            if self.character_dict[i].flipped:
-                print(f"x{i}x")
+        columns = 3
+        column_width = 15
+        for i, name in enumerate(self.character_dict, 1):
+            
+            if self.character_dict[name].flipped:
+                name = (f"x{name}x")
+            
+            print(f'{name:<{column_width}}', end='')
+
+            if i % columns == 0:
+                print()
+
+        if len(self.character_dict) % columns != 0:
+            print()
