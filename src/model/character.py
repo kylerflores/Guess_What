@@ -9,7 +9,7 @@ class Character:
         flipped (bool): The current flip status of character, initialized to False.
         image_path (str): The file path of the image.
     """
-    def __init__(self, name, image_path):
+    def __init__(self, name, image_path="NA"):
         """
         Initializes a new character instance.
 
