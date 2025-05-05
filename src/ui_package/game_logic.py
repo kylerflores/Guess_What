@@ -1,5 +1,6 @@
 """This class represents the logic managing the game flow, turns, and player interaction."""
 import src.model.game_board as board
+import src.model.character as character
 from src.model.player import Player
 
 class GameLogic:
@@ -17,15 +18,19 @@ class GameLogic:
         - player2_board (GameBoard):
         
     """
-    def __init__(self, rounds, character_dict, player1 : Player, player2 : Player):
+    def __init__(self, rounds : int, character_dict, player1 : Player, player2 : Player):
         """
         Initializes the players and coresponding game boards, plus sets the win condition 
         """
         self.rounds = rounds
         self.current_player = 0
         self.players = (player1, player2)
-        self.game_boards = (board.GameBoard(character_dict), board.GameBoard(character_dict))
-
+        character_dict_copy1 = {name: character.Character(char.name, char.image_path) 
+                          for name, char in character_dict.items()}
+        character_dict_copy2 = {name: character.Character(char.name, char.image_path) 
+                          for name, char in character_dict.items()}
+        self.game_boards = (board.GameBoard(character_dict_copy1), board.GameBoard(character_dict_copy2))
+        
     def get_current_player(self):
         """
         Returns the player whose turn it is.
@@ -55,7 +60,9 @@ class GameLogic:
         Checks if the guessed character maches the target players secret character.
         """
         if self.get_other_board().chosen.name == guessed_character_id:
-            self.get_current_player().add_score()
+            self.get_current_player().add_score(1)
+            self.game_boards[0].reset_board()
+            self.game_boards[1].reset_board()
             return True
         else:
             return False
@@ -64,8 +71,10 @@ class GameLogic:
         """
         Checks if the either player has reached the win condition
         """
-        if self.players[self.current_player].get_score() == self.rounds:
+        if self.players[self.current_player].get_score() >= self.rounds:
             return self.players[self.current_player]
+        elif self.players[not self.current_player].get_score() >= self.rounds:
+            return self.players[not self.current_player]
         else:
             return None
 
