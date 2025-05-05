@@ -74,6 +74,7 @@ class GameBoard:
         """
         columns = 3
         column_width = 15
+        print("\nCurrent board state:")
         for i, name in enumerate(self.character_dict, 1):
             
             if self.character_dict[name].flipped:
